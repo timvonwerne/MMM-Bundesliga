@@ -1,0 +1,20 @@
+{
+  "name": "mmm-bundesliga",
+  "version": "1.0.0",
+  "description": "Module for MagicMirror to display Bundesliga scores",
+  "main": "MMM-Bundesliga.js",
+  "license": "MIT",
+  "author": {
+    "name": "Tim von Werne",
+    "email": "me@vonwernet.de",
+    "url": "https://vonwernet.de"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "scripts": {},
+  "keywords": []
+}
