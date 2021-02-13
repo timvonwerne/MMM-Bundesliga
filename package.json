@@ -9,7 +9,9 @@
     "email": "me@vonwernet.de",
     "url": "https://vonwernet.de"
   },
-  "dependencies": {},
+  "dependencies": {
+    "momentjs": "^2.0.0"
+  },
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-config-airbnb-base": "^14.2.1",
