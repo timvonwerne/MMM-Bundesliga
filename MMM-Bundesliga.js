@@ -2,7 +2,7 @@ Module.register("MMM-Bundesliga", {
   defaults: {
     header: "",
     initialLoadDelay: 0,
-    updateInterval: 10 * 60 * 10000
+    updateInterval: 0.5 * 60 * 10000
   },
 
   apiURL: "https://www.openligadb.de/api/getmatchdata/bl1",
@@ -37,11 +37,15 @@ Module.register("MMM-Bundesliga", {
     }
 
     const matchesElement = document.createElement("div");
-    matchesElement.className = "matches bright small";
+    matchesElement.className = "matches bright xsmall";
 
     this.matches.forEach((m) => {
       const singleMatch = document.createElement("div");
       singleMatch.className = "match";
+
+      if (m.MatchIsFinished) {
+        singleMatch.className += " is-finished";
+      }
 
       const homeTeam = document.createElement("div");
       const homeTeamLogo = document.createElement("img");
@@ -73,23 +77,27 @@ Module.register("MMM-Bundesliga", {
 
       singleMatch.appendChild(homeTeam);
 
-      if (m.MatchResults.length > 0) {
-        const score = document.createElement("div");
+      const score = document.createElement("div");
+      score.className = "score";
+
+      if (m.MatchResults.length === 0) {
+        singleMatch.className += " dimmed";
+        score.textContent = moment(m.MatchDateTime).fromNow();
+      } else {
         const homeTeamScore = document.createElement("span");
         const awayTeamScore = document.createElement("span");
 
-        score.className = "score";
         homeTeamScore.className = "home-team-score";
         awayTeamScore.className = "away-team-score";
 
-        homeTeamScore.textContent = m.MatchResults["0"].PointsTeam1;
+        homeTeamScore.textContent = m.MatchResults[0].PointsTeam1;
         awayTeamScore.textContent = m.MatchResults[0].PointsTeam1;
 
         score.appendChild(homeTeamScore);
         score.appendChild(awayTeamScore);
         singleMatch.appendChild(score);
       }
-
+      singleMatch.appendChild(score);
       singleMatch.appendChild(awayTeam);
 
       matchesElement.appendChild(singleMatch);
@@ -114,9 +122,7 @@ Module.register("MMM-Bundesliga", {
     scoreRequest.onreadystatechange = function () {
       if (this.readyState === 4) {
         if (this.status === 200) {
-          //Log.info("response", JSON.parse(this.response));
           self.processScores(JSON.parse(this.response));
-          //self.processWeather(JSON.parse(this.response));
         } else if (this.status === 401) {
           self.updateDom(self.config.animationSpeed);
 
@@ -139,8 +145,6 @@ Module.register("MMM-Bundesliga", {
     if (!scores) {
       return;
     }
-
-    Log.info("scores", scores);
 
     this.matches = scores;
 
