@@ -1,0 +1,60 @@
+.matches {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.match {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.home-team,
+.away-team {
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.home-team span {
+  margin-left: 1rem;
+}
+
+.away-team span {
+  margin-right: 1rem;
+}
+
+.home-team img,
+.away-team img {
+  height: 35px;
+  width: auto;
+}
+
+.score {
+  width: 4em;
+}
+
+.home-team-score,
+.away-team-score {
+  display: inline-block;
+display: -webkit-inline-flex;
+display: inline-flex;
+display: -ms-inline-flexbox;
+width: 1.5em;
+height: 1.5em;
+-ms-flex-align: center;
+-webkit-align-items: center;
+align-items: center;
+-ms-flex-pack: center;
+-webkit-justify-content: center;
+justify-content: center;
+background: #d0021b;
+color: #fff;
+font-weight: 700;
+font-size: 1.1em;
+position: relative;
+transition: background .33s,color .33s;
+}
