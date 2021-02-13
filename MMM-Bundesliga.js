@@ -108,10 +108,10 @@ Module.register("MMM-Bundesliga", {
     var self = this;
     var retry = true;
 
-    var weatherRequest = new XMLHttpRequest();
-    weatherRequest.open("GET", this.apiURL);
+    var scoreRequest = new XMLHttpRequest();
+    scoreRequest.open("GET", this.apiURL);
 
-    weatherRequest.onreadystatechange = function () {
+    scoreRequest.onreadystatechange = function () {
       if (this.readyState === 4) {
         if (this.status === 200) {
           //Log.info("response", JSON.parse(this.response));
@@ -132,7 +132,7 @@ Module.register("MMM-Bundesliga", {
       }
     };
 
-    weatherRequest.send();
+    scoreRequest.send();
   },
 
   processScores: function (scores) {
