@@ -2,7 +2,7 @@ Module.register("MMM-Bundesliga", {
   defaults: {
     header: "",
     initialLoadDelay: 0,
-    updateInterval: 0.5 * 60 * 10000
+    updateInterval: 30000
   },
 
   apiURL: "https://www.openligadb.de/api/getmatchdata/bl1",
